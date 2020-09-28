@@ -8,13 +8,18 @@
         <link href="{% static 'lab/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <h1>DTU VLAB</h1>
-        <div>
-            {% if user.is_authenticated %}
-                Signed in as <strong>{{ user.username }}</strong>.
-            {% else %}
-                Not signed in.
-            {% endif %}
+        
+        <div class="row">
+            <div id="siteheading" class="col-11">
+                <h1 id="pagetitle">DTU VLAB</h1>
+            </div>
+            <div id="logdiv" class="col-1">
+                {% if user.is_authenticated %}
+                    Welcome, <strong>{{ user.username }}</strong>.
+                {% else %}
+                    Not signed in.
+                {% endif %}
+            </div>
         </div>
         <ul class="nav">
             <li class="nav-item">

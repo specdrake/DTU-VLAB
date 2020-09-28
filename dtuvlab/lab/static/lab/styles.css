@@ -1,0 +1,20 @@
+#pagetitle{
+    text-align: center;
+    margin-left: 100px;
+    color: brown;
+}
+body{
+    background-color: floralwhite;
+}
+.contentheading{
+    font-size: 40px;
+    color: brown;
+    margin-left: 5px;
+}
+#logdiV{
+    text-align:right;
+    margin-left: 50;
+}
+.nav{
+    margin-left: 600px;
+}
