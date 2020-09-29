@@ -8,45 +8,56 @@
         <link href="{% static 'lab/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <div class="container"> 
+        <div class="container-fluid header"> 
         <div class="row">
-            <div id="siteheading" class="col-lg-10">
-                <h1 id="pagetitle">DTU VLAB</h1>
+            <div id="siteheading" class="col-lg-4">
+                <h1 id="pagetitle"><span style="border:2px solid black; padding:5px; border-radius: 5px; background-color: lightgrey;">DTU-VLAB</span></h1>
             </div>
-            <div id="logdiv" class="col-lg-2">
-                {% if user.is_authenticated %}
-                    Welcome, <strong>{{ user.username }}</strong>.
-                {% else %}
-                    Not signed in.
-                {% endif %}
+            <div class="col-lg-8" > <!--style="border:2px solid green; text-align: right;"-->
+                <!-- <div class="row"> -->
+                <!-- <div class="col-lg-6" style="border: 2px solid brown;"></div> -->
+                <!-- <div class="col-lg-4" style="border:10px solid greenyellow;"> -->
+                <ul class="nav col-lg-4" style="text-align: right;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'experiments' %}">Experiments</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <!-- </div>
+                </div> -->
+                <div class="row">
+                <div class="col-lg-9"><!-- style="border:2px solid red;">--></div>
+                <div id="logdiv" class="col-lg-3">
+                            {% if user.is_authenticated %}
+                                Welcome, <strong>{{ user.username }}</strong>.
+                            {% else %}
+                                Not signed in.
+                            {% endif %}
+                </div>
+                </div>
             </div>
         </div>
         </div>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Home</a>
-            </li>
-
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'experiments' %}">Experiments</a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                </li>
-
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
-                </li>
-            {% endif %}
-        </ul>
-        <hr>
+        <!-- <hr style="color: black;border: 0.5px solid black;width:100%;margin-left:0px"> -->
+        <br>
         {% block body %}
         {% endblock %}
     </body>

@@ -1,8 +1,16 @@
 {% extends "lab/layout.html" %}
+{% load static %}
 {% block title %}
     Home
 {% endblock %}
 
 {% block body %}
    <div class="contentheading">Content</div> 
+    <hr>
+    <div id="welcomediv">
+       <span style="color:black;">!!</span> Welcome <span style="color:black">!!</span>
+    </div>
+    <div id="imgbg">
+        <img src="{% static 'lab/bg2.jpeg' %}" alt="wallpaper">
+    </div>
 {% endblock %}
