@@ -3,7 +3,11 @@ Virtual Analog Electronics Laboratory for EC261 Course at Delhi Technological Un
 
 The folder dtuvlab contains a django project.
 
-Work in progress!!
+## To run:
 
-!!Made by Abhishek Tyagi & Anurag Hooda 
+1) Navigate to dtuvlab
+2) ```python manage.py runserver```
+
+## Work in progress
+
 
