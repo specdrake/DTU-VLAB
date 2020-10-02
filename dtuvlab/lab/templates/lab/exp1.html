@@ -1,0 +1,156 @@
+{% extends "lab/layout.html" %}
+{% load static %}
+{% block title %}
+    Experiment {{expnum}}
+{% endblock %}
+{% block script %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("JS loaded")
+        document.querySelector('form').reset();
+        // document.querySelector('#diodesel').addEventListener('onchange', function() {
+        //     console.log("Changed")
+        //     let value = document.querySelector('form select').value
+        //     let lbl = document.querySelector('#diodevf')
+        //     switch(value){
+        //         case "diode1" : lbl.innerHTML = "Vf = 0.6V";
+        //                         break;
+        //         case "diode2" : lbl.innerHTML = "Vf = 0.6V";
+        //                         break;
+        //         case "diode3" : lbl.innerHTML = "Vf = 0.6V";
+        //                         break;
+        //         case "diode4" : lbl.innerHTML = "Vf = 0.5V";
+        //                         break;
+        //     }
+        // });
+    });
+    function diodelabel() {
+        console.log("Changed")
+        let value = document.querySelector('form select').value
+        let lbl = document.querySelector('#diodevf')
+        switch(value){
+            case "diode1" : lbl.innerHTML = "Vf = 0.6V";
+                            break;
+            case "diode2" : lbl.innerHTML = "Vf = 0.6V";
+                            break;
+            case "diode3" : lbl.innerHTML = "Vf = 0.6V";
+                            break;
+            case "diode4" : lbl.innerHTML = "Vf = 0.5V";
+                            break;
+            default : lbl.innerHTML = ""
+                        break;
+        }
+    }
+    function dcvoltchange() {
+        let dcvslider = document.querySelector('#sldr-1dcvolt')
+        console.log(`DC Voltage value : ${dcvslider.value}`)
+        document.querySelector('#val-1dcvolt').value = dcvslider.value
+    }
+    function reschange() {
+        let resslider = document.querySelector('#sldr-1res')
+        console.log(`Resistance value : ${resslider.value}`)
+        document.querySelector('#val-1res').value = resslider.value
+    }
+    function vdcvoltchange() {
+        let dcval = document.querySelector('#val-1dcvolt')
+        if(dcval.value < 0.2) dcval.value=0.2
+        if(dcval.value > 5) dcval.value=5
+        console.log(`DC Voltage value : ${dcval.value}`)
+        document.querySelector('#sldr-1dcvolt').value = dcval.value
+    }
+    function vreschange() {
+        let resval = document.querySelector('#val-1res')
+        if(resval.value < 100) dcval.value=100
+        if(resval.value > 2000) dcval.value=2000
+        console.log(`Resistance value : ${resval.value}`)
+        document.querySelector('#sldr-1res').value = resval.value
+
+    }
+</script>
+{% endblock %}
+{% block body %}
+    {% if mesg %}
+    <div style="color:green;font-size:20px; text-align: center; border:2px solid red;">{{ mesg }}</div>
+    {% endif %}
+    <div class="contentheading">Experiment {{expnum}}</div>
+    <hr>
+    <div class="tablecont">
+        <table id="tabexp1" class="tabexp">
+            <caption style="border:2px solid black;color:green;font-size:20px;text-align: center; caption-side: top;">Experiment Table</caption>
+            <tr>
+                <th>S. No.</th>
+                <th>Forward Voltage(Volt)</th>
+                <th>Forward Current(mA)</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0.567</td>
+                <td>2.40</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>0.571</td>
+                <td>2.90</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>0.575</td>
+                <td>3.40</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>0.578</td>
+                <td>3.90</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>0.581</td>
+                <td>4.40</td>
+            </tr>
+            <!-- {% for row in table %}
+            <tr>
+                <td>1</td>
+                <td>{{ row.vdc }}</td>
+                <td>{{ row.res }}</td>
+            </tr>
+            {% endfor %} -->
+        </table>    
+    </div>
+    <hr>
+    <div class="simcont container">
+    <div style="color:green;font-size:20px; text-align: center; border:2px solid black">Simulation</div>
+        <div class="row">
+            <div class="diagramcont col-lg-8">
+                <img src="{% static 'lab/exp1.png' %}" alt="wallpaper">
+            </div>
+            <div class="controlscont col-lg-4">
+                <form action="{% url 'exp' expnum %}" method="POST" class="controlexp" id="controlexp1" style="border:2px solid black;">
+                    {% csrf_token %}
+                    <label for="select">Choose a diode : </label>
+                    <select id="diodesel" onchange="diodelabel()">
+                        <option selected disabled value="">Select Diode</option>
+                        <option value="diode1">IN4001</option>
+                        <option value="diode2">IN4004</option>
+                        <option value="diode3">IN4007</option>
+                        <option value="diode4">IN4148</option>
+                    </select>
+                    <label id="diodevf"></label>
+                    <br>
+                    <div class="sldrcont">
+                        <label for="sldr-1dcvolt">DC Voltage : </label>
+                        <input type="range" name="sldr-1dcvolt" id="sldr-1dcvolt" min="0.2" max ="5" step="0.1" value oninput="dcvoltchange()">
+                        <input type="text" name="val-1dcvolt" id="val-1dcvolt" style="width:50px;" onchange="vdcvoltchange()">
+                        <br>
+                        <label for="sldr-1res">DC Voltage : </label>
+                        <input type="range" name="sldr-1res" id="sldr-1res" min="100" max ="2000" step="1" value oninput="reschange()">
+                        <input type="text" name="val-1res" id="val-1res" style="width: 50px;" onchange="vreschange()">
+                    </div>
+                    <br>
+                    <input type="submit" name="submit" value="Run">
+                    <input type="reset" name="reset" value="Reset">
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

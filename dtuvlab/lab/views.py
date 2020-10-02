@@ -29,7 +29,7 @@ def login_view(request):
     else:
         return render(request, "lab/login.html")
 
-
+@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
@@ -61,5 +61,25 @@ def register(request):
     else:
         return render(request, "lab/register.html")
 
+@login_required
 def experiments(request):
     return render(request, "lab/experiments.html")
+
+def exp(request, expnum):
+    if request.method == 'POST':
+        table = []
+        if expnum == 1:
+            row = {}
+            row['res']=request.POST["val-1res"] 
+            row['vdc']=request.POST["val-1dcvolt"] 
+            table.append(row)
+            
+        return render(request, f"lab/exp{expnum}.html", {
+            'expnum' : expnum,
+            'mesg' : "Success!",
+            'table' : 'table'
+        })
+    else:
+        return render(request, f"lab/exp{expnum}.html", {
+            'expnum' : expnum
+        })

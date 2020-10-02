@@ -6,10 +6,11 @@
     margin-top : 5px;
     margin-left: 100px;
 }
-#siteheading {
+/* #siteheading {
     /* padding-left:100px; */
-    /* border:2px solid black; */
-}
+    /* border:2px solid black; 
+} */
+
 @media (min-width:700px) {
 #pagetitle{
     text-align: left;
@@ -20,13 +21,14 @@
 @media (max-width:699px) {
 #pagetitle{
     text-align: left;
-    padding-left: 100px;
+    padding-left: 180px;
     color: brown;
 }
 
 }
 body{
     background-color: floralwhite;
+    overflow-x: visible;
 }
 .contentheading{
     font-size: 30px;
@@ -47,7 +49,7 @@ body{
 #logdiv{
     /* border : 2px solid black; */
     text-align: left;
-    margin-left : 120px;
+    margin-left : 200px;
     font-size: 15px;
     max-width: 300px;
     padding: 0px;
@@ -66,7 +68,7 @@ body{
 @media (max-width:699px){
     .nav {
         /* border:2px solid black; */
-        margin-left:90px;
+        margin-left:180px;
     }
 }
 a.nav-link {
@@ -122,7 +124,7 @@ a.nav-link:hover {
     display: inline-block;
   }
 
-form {
+form.loginout {
     margin:10px;
 }
 
@@ -135,4 +137,46 @@ form {
     font-size: 50px;
     text-align: center;
     color: red;
+}
+@media (max-width:699px){
+    body {
+        overflow-x: hidden;
+    }
+}
+.tabexp {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tabexp td,th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.tabexp tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+.controlexp {
+    padding: 10px;
+    margin:10px;
+}
+.controlexp input[type="submit"] {
+    border-radius: 5px;
+    border: 2px solid green;
+    max-width: 100px;
+    max-height: 40px;
+    padding: 5px;
+    margin-left: 100px;
+    margin-bottom: 10px;
+}
+.controlexp input[type="reset"] {
+    border-radius: 5px;
+    border: 2px solid red;
+    max-width: 100px;
+    max-height: 40px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
