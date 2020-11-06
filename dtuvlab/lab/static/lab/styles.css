@@ -11,17 +11,18 @@
     /* border:2px solid black; 
 } */
 
-@media (min-width:700px) {
+@media (min-width:1000px) {
 #pagetitle{
     text-align: left;
     color: brown;
 }
 }
 
-@media (max-width:699px) {
+@media (max-width:999px) {
 #pagetitle{
     text-align: left;
-    padding-left: 180px;
+    /* padding-left: 180px; */
+    padding-left: 35vw;
     color: brown;
 }
 
@@ -36,39 +37,53 @@ body{
     margin-left: 5px;
 }
 
-@media (min-width:700px) {
+@media (min-width:1000px) {
 #logdiv{
     /* border : 2px solid black; */
     text-align: left;
     font-size: 15px;
     max-width: 300px;
+    /* padding-left: 105px; */
+    margin-left:auto;
+    margin-right: 0px;
+    /* float:right; */
 }
 }
 
-@media (max-width:699px){
+@media (max-width:999px){
 #logdiv{
     /* border : 2px solid black; */
     text-align: left;
-    margin-left : 200px;
+    /* margin-left : 205px; */
+    margin-left:42vw;
     font-size: 15px;
     max-width: 300px;
     padding: 0px;
 }
 }
-@media (min-width:700px) {
+@media (min-width:1000px) {
     .nav{
         /* border:2px solid black; */
-        margin-left: 650px;
-        max-width: 250px;
+        /* margin-left: 650px; */
+        /* max-width: 250px; */
         /* text-align: right; */
         padding-left: 10px;
         padding-right: 0px;
+        flex-wrap: nowrap;
+        /* padding-left: 100px; */
+        margin-left:auto;
+        margin-right: 0px;
+        /* float:right; */
+        
     }
 }
-@media (max-width:699px){
+@media (max-width:999px){
     .nav {
         /* border:2px solid black; */
-        margin-left:180px;
+        margin-top : 5px;
+        /* margin-left:200px; */
+        margin-left:38vw;
+        flex-wrap: nowrap;
     }
 }
 a.nav-link {
@@ -94,7 +109,9 @@ a.nav-link {
 .header {
     background-color:lightslategray;
     padding:5px;
-    padding-top : 10px;
+    padding-top : 20px;
+    padding-bottom : 20px;
+
 }
 
 a.nav-link:hover {
@@ -179,4 +196,9 @@ form.loginout {
     padding: 5px;
     margin-left: 10px;
     margin-bottom: 10px;
+}
+
+
+.row {
+    margin-right:0px;
 }

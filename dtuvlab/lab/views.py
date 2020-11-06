@@ -5,6 +5,11 @@ from django.shortcuts import render
 from django.urls import reverse
 from .models import User
 from django.contrib.auth.decorators import login_required
+import sys
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(1, '/home/anurag/Workspace/DTU/CourseProj/AE/website/DTU-VLAB/dtuvlab/lab/simulations/examples/diode')
+import exp1 as diode
+import matplotlib.pyplot as plt
 
 def index(request):
     return render(request, "lab/index.html", {
@@ -67,18 +72,37 @@ def experiments(request):
 
 def exp(request, expnum):
     if request.method == 'POST':
-        table = []
-        if expnum == 1:
+        print("hello", expnum)
+        tablerow = []
+        if expnum == "1":
+            print("Hello")
+            print("res:----", request.POST["val-1res"])
+            print("volt:----", request.POST["val-1dcvolt"])
             row = {}
             row['res']=request.POST["val-1res"] 
-            row['vdc']=request.POST["val-1dcvolt"] 
-            table.append(row)
+            row['vdc']=request.POST["val-1dcvolt"]
+            print(row['res'])
+            c = diode.init()
+            diode.setCircuitParams(5, 1000, '1N4148', c)
+            anl, tmp = diode.simulateTemp(c)
+            canl = anl[25]
+
+            print(anl)
+            diode.plotFunc(c)
+            print("Hello World!!!!")
+            print("Hasdfd")
+            # print(type(plot1))
             
-        return render(request, f"lab/exp{expnum}.html", {
-            'expnum' : expnum,
-            'mesg' : "Success!",
-            'table' : 'table'
-        })
+            # plt.show()
+            tablerow.append(row)
+            
+            return render(request, f"lab/exp{expnum}.html", {
+                'expnum' : expnum,
+                'mesg' : "Success1!",
+                'tablerow' : tablerow
+            })
+        else:
+            return HttpResponse("<h1>Error!</h1>")
     else:
         return render(request, f"lab/exp{expnum}.html", {
             'expnum' : expnum
